@@ -9,17 +9,16 @@ export default function Header() {
         <Link href="/">
           <a>DJ Events</a>
         </Link>
-
-        <nav>
-          <ul>
-            <Li>
-              <Link href="/events">
-                <a>Events</a>
-              </Link>
-            </Li>
-          </ul>
-        </nav>
       </div>
+      <nav>
+        <ul>
+          <li>
+            <Link href="/events">
+              <a>Events</a>
+            </Link>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
