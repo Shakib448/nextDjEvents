@@ -1,10 +1,13 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import clsx from "clsx";
 import styles from "@/styles/Layout.module.scss";
 import Header from "./Header";
 import Footer from "./Footer";
+import Showcase from "./Showcase";
 
 export default function Layout({ title, children, description, keywords }) {
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -15,6 +18,8 @@ export default function Layout({ title, children, description, keywords }) {
         <meta name="keywords" content={keywords} />
       </Head>
       <Header />
+
+      {router.pathname === "/" && <Showcase />}
       <main>
         <div className={clsx(styles.container)}>{children}</div>
       </main>
