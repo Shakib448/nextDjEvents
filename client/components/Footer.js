@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import Link from "next/link";
-import styles from "../styles/Footer.module.scss";
+import styles from "@/styles/Footer.module.scss";
 
 export default function Footer() {
   return (

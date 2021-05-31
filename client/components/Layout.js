@@ -1,6 +1,6 @@
 import Head from "next/head";
 import clsx from "clsx";
-import styles from "../styles/Layout.module.scss";
+import styles from "@/styles/Layout.module.scss";
 import Header from "./Header";
 import Footer from "./Footer";
 
