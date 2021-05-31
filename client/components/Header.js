@@ -1,7 +1,25 @@
 import Link from "next/link";
-import Styles from "../styles/Header.module.scss";
+import styles from "../styles/Header.module.scss";
 import clsx from "clsx";
 
 export default function Header() {
-  return <div></div>;
+  return (
+    <header className={clsx(styles.header)}>
+      <div className={clsx(styles.logo)}>
+        <Link href="/">
+          <a>DJ Events</a>
+        </Link>
+
+        <nav>
+          <ul>
+            <Li>
+              <Link href="/events">
+                <a>Events</a>
+              </Link>
+            </Li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
 }
