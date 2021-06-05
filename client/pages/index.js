@@ -10,7 +10,7 @@ export default function HomePage({ events }) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await axiosConfig.get("/api/events");
-  return { props: { events: data } };
+  return { props: { events: data }, revalidate: 1 };
 }
