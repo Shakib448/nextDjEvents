@@ -1,11 +1,22 @@
 import Layout from "@/components/Layout";
 import axiosConfig from "../../config";
+import styles from "@/styles/Event.module.scss";
+import { FaPencilAlt, FaTimes } from "react-icons/fa";
+import clsx from "clsx";
 
 export default function EventPage({ evt }) {
   const singleEvents = Object.assign({}, ...evt);
   return (
     <Layout>
-      <h1>{singleEvents.name}</h1>
+      <div className={clsx(styles.event)}>
+        <div className={clsx(styles.controls)}>
+          <Link href={`/events/edit/${singleEvents.id}`}>
+            <a>
+              <FaPencilAlt />
+            </a>
+          </Link>
+        </div>
+      </div>
     </Layout>
   );
 }
