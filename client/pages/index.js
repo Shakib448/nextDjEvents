@@ -1,5 +1,6 @@
 import Layout from "@/components/Layout";
 import axiosConfig from "../config";
+import EventItem from "@/components/EventItem";
 
 export default function HomePage({ events }) {
   console.log(events);
@@ -8,7 +9,7 @@ export default function HomePage({ events }) {
       <h1>Upcoming Events</h1>
       {events?.length === 0 && <h3>No events to show</h3>}
       {events?.map((evt) => (
-        <h3 key={evt.id}>{evt.name}</h3>
+        <EventItem key={evt.id} evt={evt} />
       ))}
     </Layout>
   );
