@@ -1,0 +1,76 @@
+{
+  "events": [
+    {
+      "id": "1",
+      "name": "Sample 1",
+      "slug": "sample-1",
+      "venue": "Sample -1 Club",
+      "address": "Sample 1 Address",
+      "performance": "Sample 1 Performance",
+      "date": "Sample 1 Date",
+      "time": "Sample 1 Time",
+      "description": "Sample 1 Description",
+      "image": "/images/sample/event1.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Sample 2",
+      "slug": "sample-2",
+      "venue": "Sample -2 Club",
+      "address": "Sample 2 Address",
+      "performance": "Sample 2 Performance",
+      "date": "Sample 2 Date",
+      "time": "Sample 2 Time",
+      "description": "Sample 2 Description",
+      "image": "/images/sample/event2.jpg"
+    },
+    {
+      "id": "3",
+      "name": "Sample 3",
+      "slug": "sample-3",
+      "venue": "Sample -3 Club",
+      "address": "Sample 3 Address",
+      "performance": "Sample 3 Performance",
+      "date": "Sample 3 Date",
+      "time": "Sample 3 Time",
+      "description": "Sample 3 Description",
+      "image": "/images/sample/event3.jpg"
+    },
+    {
+      "id": "4",
+      "name": "Sample 4",
+      "slug": "sample-4",
+      "venue": "Sample -4 Club",
+      "address": "Sample 4 Address",
+      "performance": "Sample 4 Performance",
+      "date": "Sample 4 Date",
+      "time": "Sample 4 Time",
+      "description": "Sample 4 Description",
+      "image": "/images/sample/event4.jpg"
+    },
+    {
+      "id": "5",
+      "name": "Sample 5",
+      "slug": "sample-5",
+      "venue": "Sample -5 Club",
+      "address": "Sample 5 Address",
+      "performance": "Sample 5 Performance",
+      "date": "Sample 5 Date",
+      "time": "Sample 5 Time",
+      "description": "Sample 5 Description",
+      "image": "/images/sample/event5.jpg"
+    },
+    {
+      "id": "6",
+      "name": "Sample 6",
+      "slug": "sample-6",
+      "venue": "Sample -6 Club",
+      "address": "Sample 6 Address",
+      "performance": "Sample 6 Performance",
+      "date": "Sample 6 Date",
+      "time": "Sample 6 Time",
+      "description": "Sample 6 Description",
+      "image": "/images/sample/event6.jpg"
+    }
+  ]
+}
