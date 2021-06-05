@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import axiosConfig from "../config";
 import EventItem from "@/components/EventItem";
+import Link from "next/link";
 
 export default function HomePage({ events }) {
   console.log(events);
@@ -11,11 +12,16 @@ export default function HomePage({ events }) {
       {events?.map((evt) => (
         <EventItem key={evt.id} evt={evt} />
       ))}
+      {events?.length > 0 && (
+        <Link href="/events">
+          <a className="btn-secondary">View All Events</a>
+        </Link>
+      )}
     </Layout>
   );
 }
 
 export async function getStaticProps() {
   const { data } = await axiosConfig.get("/api/events");
-  return { props: { events: data }, revalidate: 1 };
+  return { props: { events: data.slice(0, 3) }, revalidate: 1 };
 }
