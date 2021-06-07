@@ -8,14 +8,18 @@ export default function EventItem({ evt }) {
     <div className={clsx(styles.event)}>
       <div className={clsx(styles.img)}>
         <Image
-          src={evt.image ? evt.image : "/image/event-default.png"}
+          src={
+            evt.image
+              ? evt.image.formats.thumbnail.url
+              : "/image/event-default.png"
+          }
           width={170}
           height={100}
         />
       </div>
       <div className={clsx(styles.info)}>
         <span>
-          {new Date().toLocaleDateString("en-US")} at {evt.time}
+          {new Date(evt.date).toLocaleDateString("en-US")} at {evt.time}
         </span>
         <h3>{evt.name}</h3>
       </div>

@@ -21,6 +21,6 @@ export default function HomePage({ events }) {
 }
 
 export async function getStaticProps() {
-  const { data } = await axiosConfig.get("/api/events");
-  return { props: { events: data.slice(0, 3) }, revalidate: 1 };
+  const { data } = await axiosConfig.get("/events?_sort=date:ASC&_limit=3");
+  return { props: { events: data }, revalidate: 1 };
 }
