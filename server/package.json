@@ -9,7 +9,7 @@
     "build": "strapi build",
     "strapi": "strapi",
     "client": "npm run dev --prefix ../client",
-    "server": "concurrently \"npm run start\" \"npm run client\""
+    "server": "concurrently \"npm run develop\" \"npm run client\""
   },
   "devDependencies": {},
   "dependencies": {
