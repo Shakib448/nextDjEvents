@@ -27,14 +27,15 @@ export default function EventPage({ evt }) {
           </a>
         </div>
         <span>
-          {singleEvents.date} at {singleEvents.time}
+          {new Date(singleEvents.date).toLocaleDateString("en-US")} at{" "}
+          {singleEvents.time}
         </span>
         <h1>{singleEvents.name}</h1>
 
         {singleEvents.image && (
           <div className={clsx(styles.image)}>
             <Image
-              src={singleEvents.image.formats.thumbnail.url}
+              src={singleEvents.image.formats.medium.url}
               width={960}
               height={600}
             />
