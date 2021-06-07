@@ -8,8 +8,8 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "client": "npm dev --prefix ../client",
-    "server": "concurrently \"npm run server\" \"npm run client\""
+    "client": "npm run dev --prefix ../client",
+    "server": "concurrently \"npm run start\" \"npm run client\""
   },
   "devDependencies": {},
   "dependencies": {
