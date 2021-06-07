@@ -33,7 +33,11 @@ export default function EventPage({ evt }) {
 
         {singleEvents.image && (
           <div className={clsx(styles.image)}>
-            <Image src={singleEvents.image} width={960} height={600} />
+            <Image
+              src={singleEvents.image.formats.thumbnail.url}
+              width={960}
+              height={600}
+            />
           </div>
         )}
 
@@ -53,7 +57,7 @@ export default function EventPage({ evt }) {
 }
 
 export async function getStaticPaths() {
-  const { data } = await axiosConfig.get(`/api/events`);
+  const { data } = await axiosConfig.get(`/events`);
 
   const paths = data.map((evt) => ({
     params: { slug: evt.slug },
@@ -62,7 +66,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const { data } = await axiosConfig.get(`/api/events/${slug}`);
+  const { data } = await axiosConfig.get(`/events?slug=${slug}`);
   return { props: { evt: data }, revalidate: 1 };
 }
 
