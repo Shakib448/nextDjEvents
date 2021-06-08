@@ -9,7 +9,7 @@ import clsx from "clsx";
 export default function AddEventsPage() {
   const [values, setValues] = useState({
     name: "",
-    performance: "",
+    performers: "",
     venue: "",
     address: "",
     date: "",
@@ -20,6 +20,16 @@ export default function AddEventsPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(values);
+    setValues({
+      name: "",
+      performers: "",
+      venue: "",
+      address: "",
+      date: "",
+      time: "",
+      description: "",
+    });
   };
 
   const handleInputChange = (e) => {
