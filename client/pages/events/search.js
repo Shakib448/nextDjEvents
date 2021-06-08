@@ -2,11 +2,18 @@ import Layout from "@/components/Layout";
 import axiosConfig from "../../config";
 import EventItem from "@/components/EventItem";
 import qs from "qs";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function SearchPage({ events }) {
+  const router = useRouter();
+
   return (
     <Layout>
-      <h1>Search Result</h1>
+      <Link href="/events">
+        <a>Go Back</a>
+      </Link>
+      <h1>Search Result for {router.query.term}</h1>
       {events?.length === 0 && <h3>No result found</h3>}
       {events?.map((evt) => (
         <EventItem key={evt.id} evt={evt} />
