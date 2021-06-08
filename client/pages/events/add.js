@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import axiosConfig from "../../config";
 import styles from "@/styles/Form.module.scss";
 import Layout from "@/components/Layout";
@@ -16,20 +18,20 @@ export default function AddEventsPage() {
     time: "",
     description: "",
   });
+
   const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(values);
-    setValues({
-      name: "",
-      performers: "",
-      venue: "",
-      address: "",
-      date: "",
-      time: "",
-      description: "",
-    });
+
+    // Validation
+    const hasEmptyFields = Object.values(values).some(
+      (element) => element === ""
+    );
+
+    if (hasEmptyFields) {
+      toast.error("Please fill in all fields");
+    }
   };
 
   const handleInputChange = (e) => {
@@ -41,7 +43,7 @@ export default function AddEventsPage() {
     <Layout title="Add New Event">
       <Link href="/events">Go Back</Link>
       <h1>Add Events</h1>
-
+      <ToastContainer />
       <form onSubmit={handleSubmit} className={clsx(styles.form)}>
         <div className={clsx(styles.grid)}>
           <div>
