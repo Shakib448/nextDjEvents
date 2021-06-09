@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -8,15 +9,16 @@ import styles from "@/styles/Form.module.scss";
 import Layout from "@/components/Layout";
 import clsx from "clsx";
 
-export default function EditEventsPage() {
+export default function EditEventsPage({ evt }) {
+  console.log(evt);
   const [values, setValues] = useState({
-    name: "",
-    performarce: "",
-    venue: "",
-    address: "",
-    date: "",
-    time: "",
-    description: "",
+    name: evt?.name,
+    performarce: evt?.performarce,
+    venue: evt?.venue,
+    address: evt?.address,
+    date: evt?.date,
+    time: evt?.time,
+    description: evt?.description,
   });
 
   const router = useRouter();
@@ -32,7 +34,7 @@ export default function EditEventsPage() {
     if (hasEmptyFields) {
       toast.error("Please fill in all fields");
     }
-    const res = await axiosConfig.post("/events", values);
+    const res = await axiosConfig.put(`/events/${evt?.id}`, values);
     if (!res.statusText) {
       toast.error("Something Went Wrong");
     } else {
@@ -48,7 +50,7 @@ export default function EditEventsPage() {
   return (
     <Layout title="Add New Event">
       <Link href="/events">Go Back</Link>
-      <h1>Add Events</h1>
+      <h1>Edit Events</h1>
       <ToastContainer />
       <form onSubmit={handleSubmit} className={clsx(styles.form)}>
         <div className={clsx(styles.grid)}>
@@ -98,7 +100,7 @@ export default function EditEventsPage() {
               type="date"
               name="date"
               id="date"
-              value={values.date}
+              value={moment(values.date).format("yyyy-MM-DD")}
               onChange={handleInputChange}
             />
           </div>
@@ -125,8 +127,15 @@ export default function EditEventsPage() {
           ></textarea>
         </div>
 
-        <input type="submit" value="Add Event" className="btn" />
+        <input type="submit" value="Update Event" className="btn" />
       </form>
     </Layout>
   );
+}
+
+export async function getServerSideProps({ params: { id } }) {
+  const { data } = await axiosConfig.get(`/events/${id}`);
+  return {
+    props: { evt: data },
+  };
 }
