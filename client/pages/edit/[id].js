@@ -8,9 +8,9 @@ import axiosConfig from "../../config";
 import styles from "@/styles/Form.module.scss";
 import Layout from "@/components/Layout";
 import clsx from "clsx";
+import Image from "next/image";
 
 export default function EditEventsPage({ evt }) {
-  console.log(evt);
   const [values, setValues] = useState({
     name: evt?.name,
     performarce: evt?.performarce,
@@ -21,6 +21,9 @@ export default function EditEventsPage({ evt }) {
     description: evt?.description,
   });
 
+  const [imagePreview, setImagePreview] = useState(
+    evt.image ? evt.image.formats.thumbnail.url : null
+  );
   const router = useRouter();
 
   const handleSubmit = async (e) => {
@@ -129,6 +132,14 @@ export default function EditEventsPage({ evt }) {
 
         <input type="submit" value="Update Event" className="btn" />
       </form>
+      <h2>Event Image</h2>
+      {imagePreview ? (
+        <Image src={imagePreview} height={100} width={170} />
+      ) : (
+        <div>
+          <p>No image uploaded</p>
+        </div>
+      )}
     </Layout>
   );
 }
