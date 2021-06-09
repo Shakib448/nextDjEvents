@@ -5,12 +5,23 @@ import { FaPencilAlt, FaTimes } from "react-icons/fa";
 import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/router";
 
 export default function EventPage({ evt }) {
   const singleEvents = Object.assign({}, ...evt);
+  const router = useRouter();
 
-  const deleteEvent = (e) => {
-    console.log(e);
+  const deleteEvent = async () => {
+    if (confirm("Are you sure you want to delete")) {
+      const res = await axiosConfig.delete(`/events/${singleEvents.id}`);
+      if (!res.statusText) {
+        toast.error(res.data.message);
+      } else {
+        router.push("/events");
+      }
+    }
   };
 
   return (
@@ -31,6 +42,7 @@ export default function EventPage({ evt }) {
           {singleEvents.time}
         </span>
         <h1>{singleEvents.name}</h1>
+        <ToastContainer />
 
         {singleEvents.image && (
           <div className={clsx(styles.image)}>
