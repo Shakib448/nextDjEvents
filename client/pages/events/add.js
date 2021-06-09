@@ -11,7 +11,7 @@ import clsx from "clsx";
 export default function AddEventsPage() {
   const [values, setValues] = useState({
     name: "",
-    performers: "",
+    performarce: "",
     venue: "",
     address: "",
     date: "",
@@ -21,7 +21,7 @@ export default function AddEventsPage() {
 
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Validation
@@ -31,6 +31,12 @@ export default function AddEventsPage() {
 
     if (hasEmptyFields) {
       toast.error("Please fill in all fields");
+    }
+    const res = await axiosConfig.post("/events", values);
+    if (!res.statusText) {
+      toast.error("Something Went Wrong");
+    } else {
+      router.push(`/events/${res.data.slug}`);
     }
   };
 
@@ -60,9 +66,9 @@ export default function AddEventsPage() {
             <label htmlFor="performers">Performers</label>
             <input
               type="text"
-              name="performers"
+              name="performarce"
               id="performers"
-              value={values.performers}
+              value={values.performarce}
               onChange={handleInputChange}
             />
           </div>
