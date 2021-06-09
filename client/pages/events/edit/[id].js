@@ -4,11 +4,12 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axiosConfig from "../../config";
+import axiosConfig from "../../../config";
 import styles from "@/styles/Form.module.scss";
 import Layout from "@/components/Layout";
 import clsx from "clsx";
 import Image from "next/image";
+import { FaImage } from "react-icons/fa";
 
 export default function EditEventsPage({ evt }) {
   const [values, setValues] = useState({
@@ -140,6 +141,11 @@ export default function EditEventsPage({ evt }) {
           <p>No image uploaded</p>
         </div>
       )}
+      <div>
+        <button className="btn-secondary">
+          <FaImage /> Set Image
+        </button>
+      </div>
     </Layout>
   );
 }

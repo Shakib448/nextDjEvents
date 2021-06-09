@@ -28,7 +28,7 @@ export default function EventPage({ evt }) {
     <Layout>
       <div className={clsx(styles.event)}>
         <div className={clsx(styles.controls)}>
-          <Link href={`/edit/${singleEvents.id}`}>
+          <Link href={`/events/edit/${singleEvents.id}`}>
             <a>
               <FaPencilAlt /> Edit Event
             </a>
