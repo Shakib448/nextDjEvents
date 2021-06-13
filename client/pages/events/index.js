@@ -1,9 +1,7 @@
 import Layout from "@/components/Layout";
-import axiosConfig from "../../config";
+import axiosConfig, { PER_PAGE } from "../../config";
 import EventItem from "@/components/EventItem";
 import Pagination from "@/components/Pagination";
-
-const PER_PAGE = 5;
 
 export default function EventPage({ events, page, total }) {
   return (
