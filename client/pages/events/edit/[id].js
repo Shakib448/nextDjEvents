@@ -31,8 +31,10 @@ export default function EditEventsPage({ evt }) {
 
   const [showModal, setShowModal] = useState(false);
 
-  const imageUploaded = () => {
-    console.log("uploaded");
+  const imageUploaded = async () => {
+    const { data } = await axiosConfig.get(`/events/${evt.id}`);
+    setImagePreview(data.image.formats.thumbnail.url);
+    setShowModal(false);
   };
 
   const handleSubmit = async (e) => {
