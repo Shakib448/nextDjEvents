@@ -11,6 +11,7 @@ import clsx from "clsx";
 import Image from "next/image";
 import { FaImage } from "react-icons/fa";
 import Modal from "../../../components/Modal";
+import ImageUpload from "../../../components/ImageUpload";
 
 export default function EditEventsPage({ evt }) {
   const [values, setValues] = useState({
@@ -29,6 +30,10 @@ export default function EditEventsPage({ evt }) {
   const router = useRouter();
 
   const [showModal, setShowModal] = useState(false);
+
+  const imageUploaded = () => {
+    console.log("uploaded");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -150,11 +155,11 @@ export default function EditEventsPage({ evt }) {
         </button>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        {/* <ImageUpload
+        <ImageUpload
           evtId={evt.id}
           imageUploaded={imageUploaded}
-          token={token}
-        /> */}
+          // token={token}
+        />
       </Modal>
     </Layout>
   );
