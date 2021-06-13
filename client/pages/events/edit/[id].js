@@ -10,6 +10,8 @@ import Layout from "@/components/Layout";
 import clsx from "clsx";
 import Image from "next/image";
 import { FaImage } from "react-icons/fa";
+import Modal from "../../../components/Modal";
+import ImageUpload from "../../../components/ImageUpload";
 
 export default function EditEventsPage({ evt }) {
   const [values, setValues] = useState({
@@ -26,6 +28,14 @@ export default function EditEventsPage({ evt }) {
     evt.image ? evt.image.formats.thumbnail.url : null
   );
   const router = useRouter();
+
+  const [showModal, setShowModal] = useState(false);
+
+  const imageUploaded = async () => {
+    const { data } = await axiosConfig.get(`/events/${evt.id}`);
+    setImagePreview(data.image.formats.thumbnail.url);
+    setShowModal(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -142,10 +152,17 @@ export default function EditEventsPage({ evt }) {
         </div>
       )}
       <div>
-        <button className="btn-secondary">
+        <button className="btn-secondary" onClick={() => setShowModal(true)}>
           <FaImage /> Set Image
         </button>
       </div>
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        <ImageUpload
+          evtId={evt.id}
+          imageUploaded={imageUploaded}
+          // token={token}
+        />
+      </Modal>
     </Layout>
   );
 }
