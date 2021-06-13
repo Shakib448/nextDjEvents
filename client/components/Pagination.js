@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Pagination({ page, total }) {
+export default function Pagination({ page, total, PER_PAGE }) {
   const lastPage = Math.ceil(total / PER_PAGE);
 
   return (
