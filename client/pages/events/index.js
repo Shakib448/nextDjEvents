@@ -3,7 +3,7 @@ import axiosConfig from "../../config";
 import EventItem from "@/components/EventItem";
 import Pagination from "@/components/Pagination";
 
-const PER_PAGE = 2;
+const PER_PAGE = 5;
 
 export default function EventPage({ events, page, total }) {
   return (
