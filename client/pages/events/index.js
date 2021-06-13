@@ -1,13 +1,11 @@
 import Layout from "@/components/Layout";
 import axiosConfig from "../../config";
 import EventItem from "@/components/EventItem";
-import Link from "next/link";
+import Pagination from "@/components/Pagination";
 
 const PER_PAGE = 2;
 
 export default function EventPage({ events, page, total }) {
-  const lastPage = Math.ceil(total / PER_PAGE);
-
   return (
     <Layout>
       <h1> Events</h1>
@@ -15,16 +13,7 @@ export default function EventPage({ events, page, total }) {
       {events?.map((evt) => (
         <EventItem key={evt.id} evt={evt} />
       ))}
-      {page > 1 && (
-        <Link href={`/events?page=${page - 1}`}>
-          <a className="btn-secondary">Prev</a>
-        </Link>
-      )}
-      {page < lastPage && (
-        <Link href={`/events?page=${page + 1}`}>
-          <a className="btn-secondary">Next</a>
-        </Link>
-      )}
+      <Pagination page={page} total={total} PER_PAGE={PER_PAGE} />
     </Layout>
   );
 }
