@@ -11,10 +11,11 @@ export default function RegisterPage() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ username, email, password });
+    console.log({ username, email, password, passwordConfirm });
   };
   return (
     <Layout title="User Registration">
@@ -55,12 +56,22 @@ export default function RegisterPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
+          <div>
+            <label htmlFor="passwordConfirm">Confirm Password </label>
+            <input
+              type="password"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              value={passwordConfirm}
+              onChange={(e) => setPasswordConfirm(e.target.value)}
+            />
+          </div>
 
           <input type="submit" value="Login" className="btn" />
         </form>
 
         <p>
-          Don't have an account? <Link href="/account/register"> Register</Link>
+          Already have an account? <Link href="/account/login"> Login</Link>
         </p>
       </div>
     </Layout>
