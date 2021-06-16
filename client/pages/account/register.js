@@ -15,7 +15,11 @@ export default function RegisterPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ username, email, password, passwordConfirm });
+
+    if (password !== passwordConfirm) {
+      toast.error("Passwords do not match");
+      return;
+    }
   };
   return (
     <Layout title="User Registration">
