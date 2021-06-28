@@ -1,3 +1,9 @@
+import Layout from "@/components/Layout";
+
 export default function dashboard() {
-  return <div>This is a dashboard</div>;
+  return (
+    <Layout title="User Dashboard">
+      <h1>Dashboard</h1>
+    </Layout>
+  );
 }
