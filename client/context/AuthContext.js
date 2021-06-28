@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import axiosConfig from "../config";
+import nextUrl from "../config/NextUrl";
 
 const AuthContext = createContext();
 
@@ -8,16 +8,31 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
+  const router = useRouter();
+
   // Register User
 
   const register = async (user) => {
     console.log(user);
   };
 
-  // Login User
+  // // Login User
   const login = async ({ email: identifier, password }) => {
-    console.log({ identifier, password });
+    try {
+      const { data, statusText } = await nextUrl.post("/api/login", {
+        identifier,
+        password,
+      });
+
+      if (statusText) {
+        setUser(data.user);
+      }
+    } catch (error) {
+      setError(error.response.data.message);
+      setError(null);
+    }
   };
+
   // Logout User
 
   const logout = async () => {
