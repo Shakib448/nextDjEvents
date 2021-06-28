@@ -15,9 +15,11 @@ export default function EventPage({ evt }) {
 
   const deleteEvent = async () => {
     if (confirm("Are you sure you want to delete")) {
-      const res = await axiosConfig.delete(`/events/${singleEvents.id}`);
-      if (!res.statusText) {
-        toast.error(res.data.message);
+      const { data, statusText } = await axiosConfig.delete(
+        `/events/${singleEvents.id}`
+      );
+      if (!statusText) {
+        toast.error(data.message);
       } else {
         router.push("/events");
       }
