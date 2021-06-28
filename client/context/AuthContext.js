@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import axiosConfig from "../config";
+import nextUrl from "../config/NextUrl";
 
 const AuthContext = createContext();
 
@@ -14,9 +14,45 @@ export const AuthProvider = ({ children }) => {
     console.log(user);
   };
 
-  // Login User
+  // // Login User
+  // const login = async ({ email: identifier, password }) => {
+  //   const { data, statusText } = await nextUrl.post("/api/login", {
+  //     identifier,
+  //     password,
+  //   });
+
+  //   console.log(data);
+
+  //   if (statusText) {
+  //     setUser(data.user);
+  //   } else {
+  //     setError(data.message);
+  //     setError(null);
+  //   }
+  // };
+
+  // Login user
   const login = async ({ email: identifier, password }) => {
-    console.log({ identifier, password });
+    const res = await fetch(`http://localhost:3000/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        identifier,
+        password,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      setUser(data.user);
+      // router.push('/account/dashboard')
+    } else {
+      setError(data.message);
+      setError(null);
+    }
   };
   // Logout User
 
