@@ -17,45 +17,22 @@ export const AuthProvider = ({ children }) => {
   };
 
   // // Login User
-  // const login = async ({ email: identifier, password }) => {
-  //   const { data, statusText } = await nextUrl.post("/api/login", {
-  //     identifier,
-  //     password,
-  //   });
-
-  //   console.log(data);
-
-  //   if (statusText) {
-  //     setUser(data.user);
-  //   } else {
-  //     setError(data.message);
-  //     setError(null);
-  //   }
-  // };
-
-  // Login user
   const login = async ({ email: identifier, password }) => {
-    const res = await fetch(`http://localhost:3000/api/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    try {
+      const { data, statusText } = await nextUrl.post("/api/login", {
         identifier,
         password,
-      }),
-    });
+      });
 
-    const data = await res.json();
-
-    if (res.ok) {
-      setUser(data.user);
-      // router.push("/account/dashboard");
-    } else {
-      setError(data.message);
+      if (statusText) {
+        setUser(data.user);
+      }
+    } catch (error) {
+      setError(error.response.data.message);
       setError(null);
     }
   };
+
   // Logout User
 
   const logout = async () => {
