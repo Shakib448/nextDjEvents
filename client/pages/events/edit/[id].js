@@ -167,8 +167,9 @@ export default function EditEventsPage({ evt }) {
   );
 }
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id }, req }) {
   const { data } = await axiosConfig.get(`/events/${id}`);
+  console.log(req.headers.cookie);
   return {
     props: { evt: data },
   };
