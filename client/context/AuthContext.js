@@ -61,28 +61,17 @@ export const AuthProvider = ({ children }) => {
 
   // Check if user is logged in
 
-  // const checkUserLoggedIn = async () => {
-  //   try {
-  //     const { data: user, statusText } = await nextUrl.get("/api/user");
+  const checkUserLoggedIn = async () => {
+    try {
+      const { data: user, statusText } = await nextUrl.get("/api/user");
 
-  //     if (statusText) {
-  //       setUser(user);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   } catch (error) {
-  //     console.log(error.response);
-  //   }
-  // };
-
-  const checkUserLoggedIn = async (user) => {
-    const res = await fetch(`http://localhost:3000/api/user`);
-    const data = await res.json();
-
-    if (res.ok) {
-      setUser(data.user);
-    } else {
-      setUser(null);
+      if (statusText) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    } catch (error) {
+      console.log(error.response);
     }
   };
 
