@@ -16,6 +16,19 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (user) => {
     console.log(user);
+    try {
+      const { data, statusText } = await nextUrl.post("/api/register", {
+        user,
+      });
+
+      if (statusText) {
+        setUser(data.user);
+        router.push("/account/dashboard");
+      }
+    } catch (error) {
+      setError(error.response.data.message);
+      setError(null);
+    }
   };
 
   // // Login User
@@ -48,7 +61,7 @@ export const AuthProvider = ({ children }) => {
 
   // Check if user is logged in
 
-  const checkUserLoggedIn = async (user) => {
+  const checkUserLoggedIn = async () => {
     try {
       const { data: user, statusText } = await nextUrl.get("/api/user");
 
@@ -58,7 +71,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response);
     }
   };
 

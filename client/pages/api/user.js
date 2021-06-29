@@ -18,13 +18,13 @@ export default async (req, res) => {
 
       if (statusText) {
         res.status(200).json(data);
-      } else {
-        res.status(403).json({ message: "User forbidden" });
       }
     } catch (error) {
       console.log(error);
-      res.setHeader("Allow", ["GET"]);
-      res.status(405).json({ message: `Method ${req.method} not allowed` });
     }
+  } else {
+    res.status(403).json({ message: "User forbidden" });
+    res.setHeader("Allow", ["GET"]);
+    res.status(405).json({ message: `Method ${req.method} not allowed` });
   }
 };

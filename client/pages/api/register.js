@@ -4,12 +4,12 @@ import cookie from "cookie";
 export default async (req, res) => {
   if (req.method === "POST") {
     try {
-      const { identifier, password } = req.body;
+      const { username, email, password } = req.body;
 
-      const { data, statusText } = await axiosConfig.post("/auth/local", {
-        identifier,
-        password,
-      });
+      const { data, statusText } = await axiosConfig.post(
+        "/auth/local/register",
+        { username, email, password }
+      );
       if (statusText) {
         // Set cookie
         res.setHeader(
