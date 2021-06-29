@@ -3,9 +3,9 @@ import cookie from "cookie";
 
 export default async (req, res) => {
   if (req.method === "POST") {
-    try {
-      const { username, email, password } = req.body;
+    const { username, email, password } = req.body.user;
 
+    try {
       const { data, statusText } = await axiosConfig.post(
         "/auth/local/register",
         { username, email, password }
@@ -23,14 +23,14 @@ export default async (req, res) => {
           })
         );
         res.status(200).json({ user: data.user });
+      } else {
+        res.setHeader("Allow", ["POST"]);
+        res.status(405).json({ message: `Method ${req.method} not allowed` });
       }
     } catch (error) {
       res
         .status(error.response.data.statusCode)
         .json({ message: error.response.data.message[0].messages[0].message });
     }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).json({ message: `Method ${req.method} not allowed` });
   }
 };
