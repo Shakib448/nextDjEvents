@@ -4,12 +4,16 @@
 // export default async (req, res) => {
 //   if (req.method === "POST") {
 //     try {
-//       const { identifier, password } = req.body;
-
-//       const { data, statusText } = await axiosConfig.post("/auth/local", {
-//         identifier,
-//         password,
-//       });
+//       const { username, email, password } = req.body;
+//       console.log(req.body);
+//       const { data, statusText } = await axiosConfig.post(
+//         "/auth/local/register",
+//         {
+//           username,
+//           email,
+//           password,
+//         }
+//       );
 //       if (statusText) {
 //         // Set cookie
 //         res.setHeader(
@@ -36,18 +40,20 @@
 // };
 
 import cookie from "cookie";
+import { API_URL } from "@/config/index";
 
 export default async (req, res) => {
   if (req.method === "POST") {
-    const { identifier, password } = req.body;
+    const { username, email, password } = req.body;
 
-    const strapiRes = await fetch(`http://localhost:1337/auth/local`, {
+    const strapiRes = await fetch(`http://localhost:1337/auth/local/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        identifier,
+        username,
+        email,
         password,
       }),
     });
