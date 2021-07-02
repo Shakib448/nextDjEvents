@@ -15,12 +15,12 @@ module.exports = {
       return ctx.badRequest(null, [
         { messages: [{ id: "No Authorization header was found" }] },
       ]);
-
-      const data = await strapi.services.events.find({ user: user.id });
-      if (!data) {
-        return ctx.notFound();
-      }
-      return sanitizeEntity(data, { model: strapi.models.events });
     }
+
+    const data = await strapi.services.events.find({ user: user.id });
+    if (!data) {
+      return ctx.notFound();
+    }
+    return sanitizeEntity(data, { model: strapi.models.events });
   },
 };
