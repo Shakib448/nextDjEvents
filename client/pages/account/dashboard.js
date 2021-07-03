@@ -21,23 +21,6 @@ export default function dashboard({ events, token }) {
       toast.error(error.response.data.message);
       router.reload();
     }
-    // if (confirm('Are you sure?')) {
-    //   const res = await fetch(`${API_URL}/events/${id}`, {
-    //     method: 'DELETE',
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   })
-
-    //   const data = await res.json()
-
-    //   if (!res.ok) {
-    //     toast.error(data.message)
-    //   } else {
-    //     router.reload()
-    //   }
-    // }
-    console.log("delete");
   };
   return (
     <Layout title="User Dashboard">
