@@ -7,8 +7,9 @@ import axiosConfig from "../../config";
 import styles from "@/styles/Form.module.scss";
 import Layout from "@/components/Layout";
 import clsx from "clsx";
+import { parseCookie } from "@/helpers/index";
 
-export default function AddEventsPage() {
+export default function AddEventsPage({ token }) {
   const [values, setValues] = useState({
     name: "",
     performarce: "",
@@ -33,14 +34,26 @@ export default function AddEventsPage() {
       toast.error("Please fill in all fields");
     }
     try {
-      const { data, statusText } = await axiosConfig.post("/events", values);
+      const { data, statusText, status } = await axiosConfig.post(
+        "/events",
+        values,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       if (!statusText) {
+        if (status === 403 || status === 401) {
+          toast.error("No token included");
+          return;
+        }
         toast.error("Something Went Wrong");
       } else {
         router.push(`/events/${data.slug}`);
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
     }
   };
 
@@ -133,4 +146,14 @@ export default function AddEventsPage() {
       </form>
     </Layout>
   );
+}
+
+export async function getServerSideProps({ req }) {
+  const { token } = parseCookie(req);
+
+  return {
+    props: {
+      token,
+    },
+  };
 }
