@@ -32,11 +32,15 @@ export default function AddEventsPage() {
     if (hasEmptyFields) {
       toast.error("Please fill in all fields");
     }
-    const res = await axiosConfig.post("/events", values);
-    if (!res.statusText) {
-      toast.error("Something Went Wrong");
-    } else {
-      router.push(`/events/${res.data.slug}`);
+    try {
+      const { data, statusText } = await axiosConfig.post("/events", values);
+      if (!statusText) {
+        toast.error("Something Went Wrong");
+      } else {
+        router.push(`/events/${data.slug}`);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
