@@ -8,6 +8,7 @@ import styles from "@/styles/Form.module.scss";
 import Layout from "@/components/Layout";
 import clsx from "clsx";
 import { parseCookie } from "@/helpers/index";
+import { API_URL } from "@/config/index";
 
 export default function AddEventsPage({ token }) {
   const [values, setValues] = useState({
